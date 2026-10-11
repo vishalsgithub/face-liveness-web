@@ -1,0 +1,14 @@
+node_modules/
+dist/
+wasm/.build/
+wasm/.ncnn/
+wasm/dist/
+demo/node_modules/
+demo/dist/
+test/node_modules/
+.DS_Store
+face.y4m
+face_frame.png
+decoded_frame.png
+camera*.png
+photo.png

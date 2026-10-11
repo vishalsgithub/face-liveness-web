@@ -1,0 +1,69 @@
+{
+  "name": "@solankivishal/face-liveness-web",
+  "version": "1.0.0",
+  "description": "On-device face liveness (anti-spoofing) detection in the browser: tells real faces from photos, screens and masks. WebAssembly + Web Worker, with a React component.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./react": {
+      "types": "./dist/react.d.ts",
+      "default": "./dist/react.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build:wasm": "sh wasm/build.sh",
+    "build": "rm -rf dist && tsc -p tsconfig.json && mkdir -p dist/wasm dist/models && cp wasm/dist/*.js wasm/dist/*.wasm dist/wasm/ && cp -R models/detection models/live dist/models/",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "liveness",
+    "liveness-detection",
+    "anti-spoofing",
+    "face-detection",
+    "face-liveness",
+    "webassembly",
+    "wasm",
+    "react",
+    "camera",
+    "ncnn"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vishalsgithub/face-liveness-web.git"
+  },
+  "homepage": "https://github.com/vishalsgithub/face-liveness-web#readme",
+  "bugs": {
+    "url": "https://github.com/vishalsgithub/face-liveness-web/issues"
+  },
+  "author": "vish solanki <solankivishal234@gmail.com> (https://github.com/vishalsgithub)",
+  "license": "Apache-2.0",
+  "peerDependencies": {
+    "react": ">=17"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.0",
+    "react": "^19.2.0",
+    "typescript": "^5.9.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

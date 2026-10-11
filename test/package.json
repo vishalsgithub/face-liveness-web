@@ -1,0 +1,11 @@
+{
+  "name": "face-liveness-web-browser-test",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node browser-test.mjs"
+  },
+  "devDependencies": {
+    "puppeteer-core": "^24.0.0"
+  }
+}
