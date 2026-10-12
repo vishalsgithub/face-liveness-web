@@ -19,7 +19,7 @@ On-device **face liveness (anti-spoofing) detection in the browser**. It checks 
 npm install @solankivishal/face-liveness-web
 ```
 
-**Vite users:** exclude the package from dependency pre-bundling, so its worker, WebAssembly and model files load correctly:
+**Vite users:** for the development server (`vite dev`), exclude the package from dependency pre-bundling so its worker, WebAssembly and model files load. Production builds work with any Vite version without this line.
 
 ```ts
 // vite.config.ts

@@ -1,6 +1,6 @@
 {
   "name": "@solankivishal/face-liveness-web",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "On-device face liveness (anti-spoofing) detection in the browser: tells real faces from photos, screens and masks. WebAssembly + Web Worker, with a React component.",
   "type": "module",
   "main": "./dist/index.js",
@@ -19,7 +19,8 @@
   "files": [
     "dist",
     "README.md",
-    "LICENSE"
+    "LICENSE",
+    "CHANGELOG.md"
   ],
   "sideEffects": false,
   "scripts": {

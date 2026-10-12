@@ -1,6 +1,7 @@
 // Web Worker hosting the WebAssembly engine, so inference never blocks the page.
 
-import type { WasmModule } from './wasm/face_liveness_simd.js';
+import createBasicModule from './wasm/face_liveness_basic.js';
+import createSimdModule, { type WasmModule } from './wasm/face_liveness_simd.js';
 import type { WorkerRequest, WorkerResponse } from './types.js';
 
 const MAX_FACES = 16;
@@ -24,13 +25,14 @@ const SIMD_PROBE = new Uint8Array([
   15, 253, 98, 11,
 ]);
 
+// Static imports (no import()): bundlers that emit classic (IIFE) workers, such as
+// Vite 7 and older by default, can't code-split inside a worker. Only the chosen
+// variant's .wasm file is downloaded.
 async function loadModule(): Promise<{ module: WasmModule; simd: boolean }> {
   if (WebAssembly.validate(SIMD_PROBE)) {
-    const { default: create } = await import('./wasm/face_liveness_simd.js');
-    return { module: await create(), simd: true };
+    return { module: await createSimdModule(), simd: true };
   }
-  const { default: create } = await import('./wasm/face_liveness_basic.js');
-  return { module: await create(), simd: false };
+  return { module: await createBasicModule(), simd: false };
 }
 
 async function init(
